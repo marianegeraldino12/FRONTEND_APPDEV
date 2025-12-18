@@ -11,7 +11,7 @@ import { BackButton } from '@/components/ui/BackButton';
 export default function Users() {
   const { user, isAdmin } = useAuth();
   const router = useRouter();
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export default function Users() {
 
   const toggleUserRestriction = async (userId: number, isCurrentlyRestricted: boolean) => {
     try {
-      const response = await userService.toggleUserRestriction(userId, 'toggle');
+      const response = await userService.toggleUserRestriction(userId);
       
       // Backend returns { status: true, message: '...', data: {...} }
       const updatedUser = response.data.data || response.data;

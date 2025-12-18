@@ -162,7 +162,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const updateProfile = async (data: any) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const updateProfile = async (_data: any) => {
     try {
       // The current backend API does not expose a /user/profile update route.
       // Avoid calling a non-existent endpoint and explain to the user.

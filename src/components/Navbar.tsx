@@ -11,11 +11,9 @@ import { NavLink } from '@/components/ui/NavLink';
 import {
   HomeIcon,
   CubeIcon,
-  ArrowPathIcon,
   UserCircleIcon,
   Bars3Icon,
   XMarkIcon,
-  TagIcon,
   UsersIcon,
   ArrowRightOnRectangleIcon
 } from '@heroicons/react/24/outline';
