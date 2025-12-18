@@ -41,8 +41,13 @@ api.interceptors.response.use(
       const url = error.config?.url || '';
       const isAuthEndpoint = url.includes('/login') || url.includes('/register');
 
-      if (!isAuthEndpoint && typeof window !== 'undefined' && !window.location.pathname.includes('/login')) {
-        window.location.href = '/login';
+      if (!isAuthEndpoint && typeof window !== 'undefined') {
+        // Avoid performing a hard redirect here to prevent redirect loops
+        // (for example: a background /user request returning 401 immediately
+        // after a login attempt due to cookie timing or CORS). Let the
+        // application's auth layer (AuthProvider / route guards) decide
+        // when navigation to the login page is appropriate.
+        console.warn('API returned 401 for', url);
       }
     }
     return Promise.reject(error);
