@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 interface AvatarProps {
   name?: string;
@@ -28,12 +29,13 @@ export const Avatar: React.FC<AvatarProps> = ({
     .slice(0, 2);
 
   return (
-    <div className={`${sizeClasses[size]} ${className} relative inline-flex items-center justify-center rounded-full bg-indigo-600 text-white font-medium ring-2 ring-white`}>
+    <div className={`${sizeClasses[size]} ${className} relative inline-flex items-center justify-center rounded-full bg-indigo-600 text-white font-medium ring-2 ring-white overflow-hidden`}>
       {imageUrl ? (
-        <img
+        <Image
           src={imageUrl}
           alt={name}
-          className="h-full w-full rounded-full object-cover"
+          fill
+          className="rounded-full object-cover"
         />
       ) : (
         <span>{initials}</span>

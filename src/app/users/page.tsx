@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { userService } from '@/lib/api';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'react-toastify';
@@ -100,12 +101,13 @@ export default function Users() {
                         <tr key={userItem.id}>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div className="flex items-center">
-                              <div className="flex-shrink-0 h-10 w-10">
+                              <div className="flex-shrink-0 h-10 w-10 relative">
                                 {userItem.profile_image ? (
-                                  <img 
-                                    className="h-10 w-10 rounded-full" 
+                                  <Image 
+                                    className="rounded-full object-cover" 
                                     src={`${process.env.NEXT_PUBLIC_API_URL?.replace('/api', '')}/storage/${userItem.profile_image}`} 
                                     alt={userItem.name} 
+                                    fill
                                   />
                                 ) : (
                                   <div className="h-10 w-10 rounded-full bg-gray-300 flex items-center justify-center">
